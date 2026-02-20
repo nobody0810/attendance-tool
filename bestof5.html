@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CBSE Best of 5 Percentage Calculator</title>
+    <meta name="description" content="Calculate your CBSE Best of 5 percentage easily. Enter up to 6 subject marks and automatically compute the highest 5 subjects average.">
+</head>
+<body style="background-color:black; color:aqua; font-family:Arial; max-width:800px; margin:auto;">
+
+    <h1>CBSE Best of 5 Percentage Calculator</h1>
+
+    <p>Enter up to 6 subject marks. The calculator will automatically select the highest 5 marks and calculate your percentage.</p>
+
+    <label>Subject 1:</label><br>
+    <input type="number" id="s1"><br><br>
+
+    <label>Subject 2:</label><br>
+    <input type="number" id="s2"><br><br>
+
+    <label>Subject 3:</label><br>
+    <input type="number" id="s3"><br><br>
+
+    <label>Subject 4:</label><br>
+    <input type="number" id="s4"><br><br>
+
+    <label>Subject 5:</label><br>
+    <input type="number" id="s5"><br><br>
+
+    <label>Subject 6 (Optional):</label><br>
+    <input type="number" id="s6"><br><br>
+
+    <button onclick="calculate()">Calculate Percentage</button>
+
+    <h2 id="result"></h2>
+
+    <script>
+        function calculate() {
+            let marks = [
+                Number(document.getElementById("s1").value),
+                Number(document.getElementById("s2").value),
+                Number(document.getElementById("s3").value),
+                Number(document.getElementById("s4").value),
+                Number(document.getElementById("s5").value),
+                Number(document.getElementById("s6").value)
+            ];
+
+            marks = marks.filter(mark => !isNaN(mark) && mark > 0);
+
+            if (marks.length < 5) {
+                document.getElementById("result").innerText =
+                    "Please enter at least 5 valid subject marks.";
+                return;
+            }
+
+            marks.sort((a, b) => b - a);
+
+            let topFive = marks.slice(0, 5);
+
+            let total = topFive.reduce((sum, mark) => sum + mark, 0);
+
+            let percentage = total / 5;
+
+            document.getElementById("result").innerText =
+                "Your Best of 5 Percentage: " + percentage.toFixed(2) + "%";
+        }
+    </script>
+
+</body>
+</html>
