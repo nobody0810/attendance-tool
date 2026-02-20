@@ -32,37 +32,43 @@
 
     <h2 id="result"></h2>
 
-    <script>
-        function calculate() {
-            let marks = [
-                Number(document.getElementById("s1").value),
-                Number(document.getElementById("s2").value),
-                Number(document.getElementById("s3").value),
-                Number(document.getElementById("s4").value),
-                Number(document.getElementById("s5").value),
-                Number(document.getElementById("s6").value)
-            ];
+  <script>
+function calculate() {
+    let s1 = Number(document.getElementById("s1").value);
+    let s2 = Number(document.getElementById("s2").value);
+    let s3 = Number(document.getElementById("s3").value);
+    let s4 = Number(document.getElementById("s4").value);
+    let s5 = Number(document.getElementById("s5").value);
+    let s6 = Number(document.getElementById("s6").value);
 
-            marks = marks.filter(mark => !isNaN(mark) && mark > 0);
+    let mainFive = [s1, s2, s3, s4, s5];
+    let allMarks = [s1, s2, s3, s4, s5, s6];
 
-            if (marks.length < 5) {
-                document.getElementById("result").innerText =
-                    "Please enter at least 5 valid subject marks.";
-                return;
-            }
+    mainFive = mainFive.filter(mark => !isNaN(mark) && mark > 0);
+    allMarks = allMarks.filter(mark => !isNaN(mark) && mark > 0);
 
-            marks.sort((a, b) => b - a);
+    if (mainFive.length < 5) {
+        document.getElementById("result").innerText =
+            "Please enter at least 5 valid subject marks.";
+        return;
+    }
 
-            let topFive = marks.slice(0, 5);
+    // Main 5 calculation
+    let mainTotal = mainFive.reduce((sum, mark) => sum + mark, 0);
+    let mainPercentage = mainTotal / 5;
 
-            let total = topFive.reduce((sum, mark) => sum + mark, 0);
+    // Best of 5 calculation
+    allMarks.sort((a, b) => b - a);
+    let bestFive = allMarks.slice(0, 5);
+    let bestTotal = bestFive.reduce((sum, mark) => sum + mark, 0);
+    let bestPercentage = bestTotal / 5;
 
-            let percentage = total / 5;
-
-            document.getElementById("result").innerText =
-                "Your Best of 5 Percentage: " + percentage.toFixed(2) + "%";
-        }
-    </script>
+    document.getElementById("result").innerHTML =
+        "Main 5 Percentage: " + mainPercentage.toFixed(2) + "%<br><br>" +
+        "Best of 5 Percentage: " + bestPercentage.toFixed(2) + "%";
+}
+</script>
 
 </body>
 </html>
+
