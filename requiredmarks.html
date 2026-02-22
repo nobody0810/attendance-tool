@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Required Marks to Reach Target Percentage Calculator</title>
+    <meta name="description" content="Calculate how many marks you need to reach your target percentage in CBSE board exams.">
+</head>
+<body style="background-color:black; color:aqua; font-family:Arial; max-width:800px; margin:auto;">
+
+<h1>Required Marks to Reach Target Percentage</h1>
+
+<p>Enter your total subjects, marks already obtained, and your target percentage.</p>
+
+<label>Total Subjects:</label><br>
+<input type="number" id="totalSubjects"><br><br>
+
+<label>Total Marks Already Obtained:</label><br>
+<input type="number" id="marksObtained"><br><br>
+
+<label>Target Percentage:</label><br>
+<input type="number" id="targetPercentage"><br><br>
+
+<button onclick="calculate()">Calculate Required Marks</button>
+
+<h2 id="result"></h2>
+
+<script>
+function calculate() {
+    let totalSubjects = Number(document.getElementById("totalSubjects").value);
+    let marksObtained = Number(document.getElementById("marksObtained").value);
+    let targetPercentage = Number(document.getElementById("targetPercentage").value);
+
+    if (totalSubjects <= 0 || targetPercentage <= 0) {
+        document.getElementById("result").innerText = "Please enter valid values.";
+        return;
+    }
+
+    let totalMarksPossible = totalSubjects * 100;
+    let targetTotalMarks = (targetPercentage / 100) * totalMarksPossible;
+
+    let requiredMarks = targetTotalMarks - marksObtained;
+
+    document.getElementById("result").innerText =
+        "You need " + requiredMarks.toFixed(2) + " more total marks to reach your target percentage.";
+}
+</script>
+
+</body>
+</html>
