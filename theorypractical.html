@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Theory + Practical Marks Calculator</title>
+    <meta name="description" content="Calculate combined percentage for theory and practical subjects in CBSE.">
+</head>
+<body style="background-color:black; color:aqua; font-family:Arial; max-width:800px; margin:auto;">
+
+<h1>Theory + Practical Combined Percentage Calculator</h1>
+
+<label>Theory Marks Obtained:</label><br>
+<input type="number" id="theory"><br><br>
+
+<label>Practical Marks Obtained:</label><br>
+<input type="number" id="practical"><br><br>
+
+<label>Total Marks (Usually 100):</label><br>
+<input type="number" id="total"><br><br>
+
+<button onclick="calculate()">Calculate Percentage</button>
+
+<h2 id="result"></h2>
+
+<script>
+function calculate() {
+    let theory = Number(document.getElementById("theory").value);
+    let practical = Number(document.getElementById("practical").value);
+    let total = Number(document.getElementById("total").value);
+
+    if (total <= 0) {
+        document.getElementById("result").innerText = "Enter valid total marks.";
+        return;
+    }
+
+    let obtained = theory + practical;
+    let percentage = (obtained / total) * 100;
+
+    document.getElementById("result").innerText =
+        "Combined Percentage: " + percentage.toFixed(2) + "%";
+}
+</script>
+
+</body>
+</html>
