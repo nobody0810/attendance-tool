@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CBSE Passing Marks Calculator</title>
+    <meta name="description" content="Check minimum passing marks required per subject in CBSE board exams.">
+</head>
+<body style="background-color:black; color:aqua; font-family:Arial; max-width:800px; margin:auto;">
+
+<h1>CBSE Passing Marks Calculator</h1>
+
+<p>Enter total marks of the subject to calculate minimum passing marks (33%).</p>
+
+<label>Total Marks for Subject:</label><br>
+<input type="number" id="totalMarks"><br><br>
+
+<button onclick="calculate()">Calculate Passing Marks</button>
+
+<h2 id="result"></h2>
+
+<script>
+function calculate() {
+    let total = Number(document.getElementById("totalMarks").value);
+
+    if (total <= 0) {
+        document.getElementById("result").innerText = "Enter valid total marks.";
+        return;
+    }
+
+    let passing = total * 0.33;
+
+    document.getElementById("result").innerText =
+        "Minimum Passing Marks (33%): " + passing.toFixed(2);
+}
+</script>
+
+</body>
+</html>
